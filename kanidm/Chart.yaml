@@ -2,5 +2,19 @@ apiVersion: v2
 name: kanidm
 description: A Helm chart for kanidm identity management platform.
 type: application
-version: 0.1.0
+home: https://kanidm.com/
+icon: https://kanidm.com/images/logo.svg
+keywords:
+  - kanidm
+  - idm
+  - oidc
+  - oauth2
+annotations:
+  artifacthub.io/license: MIT
+  artifacthub.io/category: security
+sources:
+  - https://github.com/kanidm/kanidm
+
+version: 0.1.1
+
 appVersion: "1.4.5"
