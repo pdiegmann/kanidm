@@ -1,0 +1,6 @@
+domain: idm.kammel.dev
+
+ingress:
+  className: nginx
+  clusterIssuer: letsencrypt-prod
+  tlsSecretName: idm-kammel-dev-tls
