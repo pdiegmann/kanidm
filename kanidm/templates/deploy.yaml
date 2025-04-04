@@ -67,7 +67,7 @@ spec:
       volumes:
       - name: tls
         secret:
-          secretName: {{ .Values.tlsSecretName }}
+          secretName: {{ .Values.ingress.tlsSecretName }}
       - name: db
         persistentVolumeClaim:
           claimName: kanidm-db
