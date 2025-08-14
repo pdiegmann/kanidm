@@ -27,6 +27,28 @@ entries:
       artifacthub.io/category: security
       artifacthub.io/license: MIT
     apiVersion: v2
+    appVersion: 1.7.1
+    created: "2025-08-14T19:04:57.085875373Z"
+    description: A Helm chart for kanidm identity management platform.
+    digest: 0a1a7d4b7ae7e2fb81be8e22f54400b5e865368fe847481966da468155c2047a
+    home: https://kanidm.com/
+    icon: https://kanidm.com/images/logo.svg
+    keywords:
+    - kanidm
+    - idm
+    - oidc
+    - oauth2
+    name: kanidm
+    sources:
+    - https://github.com/kanidm/kanidm
+    type: application
+    urls:
+    - https://github.com/pdiegmann/kanidm/releases/download/kanidm-0.0.6/kanidm-0.0.6.tgz
+    version: 0.0.6
+  - annotations:
+      artifacthub.io/category: security
+      artifacthub.io/license: MIT
+    apiVersion: v2
     appVersion: $APPVERSION
     created: "2025-08-14T18:58:59.568750798Z"
     description: A Helm chart for kanidm identity management platform.
@@ -133,4 +155,4 @@ entries:
     urls:
     - https://github.com/pdiegmann/kanidm/releases/download/kanidm-0.0.1/kanidm-0.0.1.tgz
     version: 0.0.1
-generated: "2025-08-14T18:58:59.568774432Z"
+generated: "2025-08-14T19:04:57.085891263Z"
