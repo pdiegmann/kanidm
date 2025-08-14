@@ -4,11 +4,12 @@ metadata:
   name: kanidm-db
   namespace: {{ .Release.Namespace }}
 spec:
-  {{ if .Values.db.storageClassName }}
-  storageClassName: {{ .Values.db.storageClassName }}
+  {{- $dbValues := .Values.db | default dict }}
+  {{ if .dbValues.storageClassName }}
+  storageClassName: {{ .dbValues.storageClassName }}
   {{ end }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.db.storage | default "2Gi" }}
+      storage: {{ .dbValues.storage | default "2Gi" }}
