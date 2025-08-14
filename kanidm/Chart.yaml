@@ -15,6 +15,6 @@ annotations:
 sources:
   - https://github.com/kanidm/kanidm
 
-version: 0.2.0
+version: 0.0.3
 
-appVersion: "1.7.2"
+appVersion: "v1.7.1"
