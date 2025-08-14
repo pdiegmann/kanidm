@@ -5,11 +5,11 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   {{- $dbValues := .Values.db | default dict }}
-  {{ if .dbValues.storageClassName }}
-  storageClassName: {{ .dbValues.storageClassName }}
+  {{ if $dbValues.storageClassName }}
+  storageClassName: {{ $dbValues.storageClassName }}
   {{ end }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .dbValues.storage | default "2Gi" }}
+      storage: {{ $dbValues.storage | default "2Gi" }}
