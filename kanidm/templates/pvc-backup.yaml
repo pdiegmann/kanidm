@@ -4,9 +4,11 @@ metadata:
   name: kanidm-backup
   namespace: {{ .Release.Namespace }}
 spec:
-  storageClassName: nfs-client
+  {{ if .Values.backup.storageClassName }}
+  storageClassName: {{ .Values.backup.storageClassName }}
+  {{ end }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: {{ .Values.backup.storage | default "5Gi" }}
