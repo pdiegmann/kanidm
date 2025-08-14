@@ -40,8 +40,8 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           sed -i -e 's/^version: .*$/version: ${{ steps.release-version.outputs.prefixed-version }}/g' kanidm/Chart.yaml
           APPVERSION="${{ steps.kanidm.outputs.release }}"
-          APPVERSION="${APPVERSION//v/}"
-          sed -i -e 's/^appVersion: .*$/appVersion: "${APPVERSION}"/g' kanidm/Chart.yaml
+          APPVERSION="\"${APPVERSION//v/}\""
+          sed -i -e 's/^appVersion: .*$/appVersion: $APPVERSION/g' kanidm/Chart.yaml
           git add .
           git commit -m "updated versions [skip ci]"
           git tag ${{ steps.release-version.outputs.prefixed-v-version }}
