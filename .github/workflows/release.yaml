@@ -23,13 +23,22 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: pozetroninc/github-action-get-latest-release@master
+        id: kanidm
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: kanidm
+          repo: kanidm
+          excludes: prerelease, draft
+
       - name: update version
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           sed -i -e 's/^version: .*$/version: ${{ steps.release-version.outputs.next-version }}/gm' kanidm/Chart.yaml
+          sed -i -e 's/^appVersion: .*$/appVersion: "${{ steps.kanidm.outputs.release }}"/gm' kanidm/Chart.yaml
           git add .
-          git commit -m "updated version [skip ci]"
+          git commit -m "updated versions [skip ci]"
           git push
 
       - name: Run chart-releaser
