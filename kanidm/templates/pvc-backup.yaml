@@ -4,11 +4,12 @@ metadata:
   name: kanidm-backup
   namespace: {{ .Release.Namespace }}
 spec:
-  {{ if .Values.backup.storageClassName }}
-  storageClassName: {{ .Values.backup.storageClassName }}
+  {{- $backupValues := .Values.backup | default dict }}
+  {{ if $backupValues.storageClassName }}
+  storageClassName: {{ $backupValues.storageClassName }}
   {{ end }}
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.backup.storage | default "5Gi" }}
+      storage: {{ $backupValues.storage | default "5Gi" }}
