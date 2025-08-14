@@ -18,12 +18,15 @@ jobs:
         with:
           fetch-depth: 0
       
-      - uses: wemogy/next-release-version-action@1.0.1
+      - name: Get next version
+        uses: reecetech/version-increment@2024.10.1
         id: release-version
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          scheme: semver
+          increment: patch
 
-      - uses: pozetroninc/github-action-get-latest-release@master
+      - name: Get kanidm version
+        uses: pozetroninc/github-action-get-latest-release@master
         id: kanidm
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,11 +38,12 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          sed -i -e 's/^version: .*$/version: ${{ steps.release-version.outputs.next-version }}/gm' kanidm/Chart.yaml
+          sed -i -e 's/^version: .*$/version: ${{ steps.release-version.outputs.prefixed-version }}/gm' kanidm/Chart.yaml
           sed -i -e 's/^appVersion: .*$/appVersion: "${{ steps.kanidm.outputs.release }}"/gm' kanidm/Chart.yaml
           git add .
           git commit -m "updated versions [skip ci]"
-          git push
+          git tag ${{ steps.release-version.outputs.prefixed-v-version }}
+          git push origin ${{ steps.release-version.outputs.prefixed-v-version }}
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
