@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@latest
+        uses: actions/checkout@v5.0.0
         with:
           fetch-depth: 0
 
@@ -24,7 +24,7 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@latest
+        uses: helm/chart-releaser-action@v1.0.3
         with:
           charts_dir: .
         env:
