@@ -40,9 +40,11 @@ spec:
         - name: KANIDM_ADMIN_BIND_PATH
           value: "/var/run/kanidmd.sock"
         volumeMounts:
+        {{ if and .Values.ingress .Values.ingress.tlsSecretName }}
         - name: tls
           mountPath: /tls
           readOnly: true
+        {{ end }}
         - name: db
           mountPath: /db
         - name: backup
@@ -65,9 +67,11 @@ spec:
           capabilities:
             drop: ["ALL"]
       volumes:
+      {{ if and .Values.ingress .Values.ingress.tlsSecretName }}
       - name: tls
         secret:
           secretName: {{ .Values.ingress.tlsSecretName }}
+      {{ end }}
       - name: db
         persistentVolumeClaim:
           claimName: kanidm-db
